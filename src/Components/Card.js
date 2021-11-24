@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import Modal from './CardMoreDetailsModal';
 
 const Card = ({logo, jobTitle, jobDescription}) => {
+    
+    const [modal, setModal] = useState(false);
+    const Toggle = () => setModal(!modal);
+    
+    console.log(modal)
+
     return (
         <CardContainer>
             <CardItem>
                 <CardHeaderContainer>
                     <CardHeaderImage src={logo} />
-                    <MoreHorizIcon />
+                    <MoreDetailsButton onClick={() => Toggle()} >
+                        <MoreHorizIcon />
+                        <Modal show={modal} />
+                    </MoreDetailsButton>
+                    
                 </CardHeaderContainer>
                 <JobTitle>
                     {jobTitle}
@@ -38,7 +49,6 @@ const CardContainer = styled.div`
     background-color: rgb(28, 28, 36);
     padding: 30px;
     border-radius: 10px;
-    cursor: pointer;
     transition: 0.2s ease 0s;
     align-items: stretch;
 
@@ -52,7 +62,6 @@ const CardItem = styled.div`
     flex-direction: column;
     background-color: (28, 28, 36);
     border-radius: 10px;
-    cursor: pointer;
     justify-content: space-between;
     height: 100%;
 
@@ -114,4 +123,12 @@ const MessageButton = styled.div`
     width: 50%;
     max-width: 120px;
     cursor: pointer;
+`
+
+const MoreDetailsButton = styled.button`
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+
 `
