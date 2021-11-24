@@ -17,7 +17,13 @@ const Main = () => {
         })
     },[])
 
-
+    const filteredJobs = jobs.filter((jobData) => jobData.roleName.toLowerCase().includes(filter.toLowerCase())).map((jobData)=>{
+            let logo = jobData.logo;
+            let jobTitle = jobData.roleName;
+            let jobDescription = jobData.requirements.content;
+            return <Card logo={logo} jobTitle={jobTitle} jobDescription={jobDescription} />;
+        })
+        
     return (
         <Container>
             <MainContainer>
@@ -26,15 +32,12 @@ const Main = () => {
                 </SearchContainer>
                 <SearchResultsContainer>
                     <SearchResults>
-                        Showing 15 Jobs
+                        Showing {filteredJobs.length} Jobs
                     </SearchResults>
                 </SearchResultsContainer>
                 <CardContainer>
-                    {jobs.map((jobData)=> {
-                        let logo = jobData.logo;
-                        let jobTitle = jobData.roleName;
-                        let jobDescription = jobData.requirements.content;
-                        return jobData.roleName.toLowerCase().includes(filter.toLowerCase()) ? <Card logo={logo} jobTitle={jobTitle} jobDescription={jobDescription} /> : null;
+                    {filteredJobs.map((jobData)=> {
+                        return jobData
                     })}
                 </CardContainer>
             </MainContainer>

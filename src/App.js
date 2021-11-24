@@ -16,6 +16,6 @@ export default App;
 
 const Container = styled.div`
   background-color: rgb(17, 18, 26);
-  width: 100%
-
+  width: 100%;
+  height: 100%;
 `
