@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Modal from './CardMoreDetailsModal';
@@ -7,15 +7,13 @@ const Card = ({logo, jobTitle, jobDescription}) => {
     
     const [modal, setModal] = useState(false);
     const Toggle = () => setModal(!modal);
-    
-    console.log(modal)
 
     return (
         <CardContainer>
             <CardItem>
                 <CardHeaderContainer>
                     <CardHeaderImage src={logo} />
-                    <MoreDetailsButton onClick={() => Toggle()} >
+                    <MoreDetailsButton class='moreDetails' onClick={() => Toggle()} >
                         <MoreHorizIcon />
                         <Modal show={modal} />
                     </MoreDetailsButton>
@@ -67,6 +65,7 @@ const CardItem = styled.div`
 
 `
 const CardHeaderContainer = styled.div`
+    
     display: flex;
     justify-content: space-between;
 `
